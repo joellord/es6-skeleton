@@ -1,0 +1,15 @@
+{
+  "name": "es6-skeleton",
+  "version": "0.0.1",
+  "devDependencies": {
+    "gulp": "*",
+    "gulp-concat": "*",
+    "gulp-sass": "*",
+    "gulp-jshint": "*",
+    "jshint-stylish": "*",
+    "babelify": "*",
+    "browserify": "*",
+    "vinyl-source-stream": "*",
+    "browser-sync": "*"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "es6-skeleton",
+  "version": "0.0.0",
+  "authors": [
+    "Joel Lord <jlord@macadamian.com>"
+  ],
+  "main": "dist/index.html",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "knockout": "~3.2.0",
+    "jquery": "*"
+  }
+}
