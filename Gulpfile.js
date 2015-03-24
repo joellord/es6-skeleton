@@ -10,6 +10,7 @@ var source = require("vinyl-source-stream");
 var sass = require("gulp-sass");
 var browserSync = require("browser-sync");
 var jshint = require("gulp-jshint");
+var shell = require("gulp-shell");
 
 var folders = {
     "html": "app/**/*.html",
@@ -60,7 +61,7 @@ gulp.task("bs-reload", function () {
 
 gulp.task("watch", function(){
     gulp.watch([folders.js, folders.html, folders.sass], ["modules", "html", "sass", "bs-reload", "test"]);
-    gulp.watch(folders.tests, ["test"]);
+    gulp.watch([folders.tests, folders.js], ["test"]);
 });
 
 gulp.task("build", ["modules", "html", "sass", "bs-reload", "test"]);
@@ -87,8 +88,7 @@ gulp.task("sass", function() {
         .pipe(concat("styles.css"))
         .pipe(gulp.dest("./dist"));
 });
-var mocha = require("gulp-mocha");
-var shell = require("gulp-shell");
+
 gulp.task("test", function() {
 
     var testRunner = shell.task([
@@ -97,19 +97,6 @@ gulp.task("test", function() {
 
     testRunner();
 
-//    browserify({
-//        entries: "./tests/module.js",
-//        debug: true
-//    })
-//        .transform(babelify)
-//        .bundle()
-//        .pipe(source("tmp.js"))
-//        .pipe(mocha({reporter: 'nyan'}));
-    //return gulp.src('tests/**/*.js', {read: false})
-    //    .pipe(browserify({
-    //        transform: "babelify"
-    //    }))
-    //    .pipe(mocha({reporter: 'nyan', compilers: 'js:mocha-traceur'}));
 });
 
 gulp.task("html", function() {

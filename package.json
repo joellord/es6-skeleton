@@ -15,6 +15,7 @@
     "mocha": "*",
     "gulp-mocha": "*",
     "mocha-traceur": "*",
-    "gulp-shell": "*"
+    "gulp-shell": "*",
+    "expect": "*"
   }
 }
