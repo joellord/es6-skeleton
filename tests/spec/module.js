@@ -10,7 +10,7 @@ describe('Module', function() {
     });
 
     it("Should load", ()=>{
-        expect(1).toExist();
+        expect(m).toExist();
     });
 
     it("Getter should return the set phrase", ()=>{
