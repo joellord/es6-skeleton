@@ -2,6 +2,8 @@
 
 var gulp = require("gulp");
 var concat = require("gulp-concat");
+var clean = require("gulp-clean");
+var karma = require("gulp-karma");
 var babelify = require("babelify");
 var browserify = require("browserify");
 var source = require("vinyl-source-stream");
@@ -12,7 +14,8 @@ var jshint = require("gulp-jshint");
 var folders = {
     "html": "app/**/*.html",
     "sass": "app/**/*.scss",
-    "js": "app/**/*.js"
+    "js": "app/**/*.js",
+    "tests": "tests/**/*.js"
 };
 var jsHintPaths = [
     "client",
@@ -56,7 +59,15 @@ gulp.task("bs-reload", function () {
 });
 
 gulp.task("watch", function(){
-    gulp.watch([folders.js, folders.html, folders.sass], ["modules", "html", "sass", "bs-reload"]);
+    gulp.watch([folders.js, folders.html, folders.sass], ["modules", "html", "sass", "bs-reload", "test"]);
+    gulp.watch(folders.tests, ["test"]);
+});
+
+gulp.task("build", ["modules", "html", "sass", "bs-reload", "test"]);
+
+gulp.task("clean", function() {
+    return gulp.src("dist")
+        .pipe(clean());
 });
 
 gulp.task("modules", function() {
@@ -75,6 +86,30 @@ gulp.task("sass", function() {
         .pipe(sass())
         .pipe(concat("styles.css"))
         .pipe(gulp.dest("./dist"));
+});
+var mocha = require("gulp-mocha");
+var shell = require("gulp-shell");
+gulp.task("test", function() {
+
+    var testRunner = shell.task([
+        'mocha ./tests/* -c --compilers js:mocha-traceur --report nyan'
+    ], {ignoreErrors: true});
+
+    testRunner();
+
+//    browserify({
+//        entries: "./tests/module.js",
+//        debug: true
+//    })
+//        .transform(babelify)
+//        .bundle()
+//        .pipe(source("tmp.js"))
+//        .pipe(mocha({reporter: 'nyan'}));
+    //return gulp.src('tests/**/*.js', {read: false})
+    //    .pipe(browserify({
+    //        transform: "babelify"
+    //    }))
+    //    .pipe(mocha({reporter: 'nyan', compilers: 'js:mocha-traceur'}));
 });
 
 gulp.task("html", function() {
@@ -107,4 +142,4 @@ gulp.task("jshint", function() {
     gulp.watch([srcPaths], ["jshint:hinting"]);
 });
 
-gulp.task("default", ["server", "browser-sync", "watch", "jshint"]);
+gulp.task("default", ["build", "server", "browser-sync", "watch", "jshint"]);

@@ -17,3 +17,8 @@ document.getElementById("mainDiv").innerHTML = b();
 var c = (name) => {return "Hello " + name;}
 
 console.log(c("World"));
+
+//Testing the variable templates
+a.setFirstName("Joel");
+a.setLastName("Lord");
+console.log(a.getName());

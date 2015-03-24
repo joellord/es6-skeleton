@@ -15,6 +15,18 @@ class Module {
     setPhrase(phrase) {
         this.phrase = phrase;
     }
+
+    setFirstName(name) {
+        this.firstName = name;
+    }
+
+    setLastName(name) {
+        this.lastName = name;
+    }
+
+    getName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
 }
 
 export default Module

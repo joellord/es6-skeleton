@@ -6,10 +6,15 @@
     "gulp-concat": "*",
     "gulp-sass": "*",
     "gulp-jshint": "*",
+    "gulp-clean": "*",
     "jshint-stylish": "*",
     "babelify": "*",
     "browserify": "*",
     "vinyl-source-stream": "*",
-    "browser-sync": "*"
+    "browser-sync": "*",
+    "mocha": "*",
+    "gulp-mocha": "*",
+    "mocha-traceur": "*",
+    "gulp-shell": "*"
   }
 }
