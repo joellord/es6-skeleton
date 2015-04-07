@@ -1,6 +1,9 @@
+var a = Symbol();
+
 class Module {
     constructor() {
-        this.phrase = "This is a ES6 class in a module"
+        this.phrase = "This is a ES6 class in a module";
+        this[a] = "Private";
     }
 
     speak() {
@@ -26,6 +29,10 @@ class Module {
 
     getName() {
         return `${this.firstName} ${this.lastName}`;
+    }
+
+    getA() {
+        return this[a];
     }
 }
 

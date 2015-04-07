@@ -6,6 +6,11 @@ import ko from "../../bower_components/knockout/dist/knockout.js"
 var a = new Module();
 a.speak();
 
+// a is a private property of the module
+console.log(a.a); // undefined
+// but a is accessible via the getA() method
+console.log(a.getA());
+
 a.setPhrase("New Phrase");
 
 //Knockout was loaded with the ES6 module syntax
